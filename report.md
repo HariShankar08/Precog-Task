@@ -66,20 +66,20 @@ The SVM and Neural Model were compared after incrementally adding new features o
 
 | Features                        | Model | MSE                | <= 1SD | <= 2 SD |
 | ------------------------------- | ----- | ------------------ | ------ | ------- |
-| VAD                             | SVM   | 5.53500159519488   | 138    | 182     |
-| VAD                             | NN    | 5.339602947235107  | 57     | 126     |
-| VAD + Word2Vec                  | SVM   | 4.724532153923312  | 81     | 141     |
-| VAD + Word2Vec                  | NN    | 4.737236499786377  | 81     | 141     |
-| VAD + WordNet                   | SVM   | 4.255252351426032  | 83     | 144     |
-| VAD + WordNet                   | NN    | 4.5430169105529785 | 81     | 141     |
-| VAD + Word2Vec + WordNet        | SVM   | 3.6621559184695323 | 105    | 156     |
-| VAD + Word2Vec + WordNet        | NN    | 3.9122095108032227 | 105    | 151     |
-| VAD + BERT Similarity + WordNet | SVM   | 4.047477715892683  | 91     | 152     |
-| VAD + BERT Similarity + WordNet | NN    | 4.533239841461182  | 90     | 138     |
+| VAD                             | SVM   | 5.264556766795256  | 78     | 134     |
+| VAD                             | NN    | 5.546095848083496  | 77     | 128     |
+| VAD + Word2Vec                  | SVM   | 5.332867766938792  | 80     | 130     |
+| VAD + Word2Vec                  | NN    | 5.1631999015808105 | 77     | 131     |
+| VAD + WordNet                   | SVM   | 4.078742705415954  | 89     | 151     |
+| VAD + WordNet                   | NN    | 4.390047550201416  | 86     | 147     |
+| VAD + Word2Vec + WordNet        | SVM   | 4.0478806839649435 | 91     | 152     |
+| VAD + Word2Vec + WordNet        | NN    | 4.52810525894165   | 90     | 140     |
+| VAD + BERT Similarity + WordNet | SVM   | 4.0478806839649435 | 91     | 152     |
+| VAD + BERT Similarity + WordNet | NN    | 4.312497138977051  | 87     | 149     |
 
 ### Analysis -
 
-Overall, we see that Neural Networks are underperforming the SVM counterparts. This may be as a result of the small train/validation size for the dataset provided for this task. A surprising result that is noted is the better performance of the model using Word2Vec similarity as opposed to similarity of BERT embeddings.
+Overall, we see that Neural Networks are underperforming the SVM counterparts. This may be as a result of the small train/validation size for the dataset provided for this task. A surprising result that is noted is the same performance of the model using Word2Vec similarity as opposed to similarity of BERT embeddings.
 
 It is believed that this is in part because the fact that BERT embeddings are contextual, and so part of the information encoded in its embedding is already latent in our dataset by virtue of the VAD scores and WordNet similarity. In contrast, the WordNet similarity only depends on co-occurences in the corpus trained, and such does not encode meaning similar to the VAD scores/Wu-Palmer similarity.
 
@@ -105,13 +105,16 @@ We have used a metric based on the average similarity of the content words in th
 
 We observe the following performance metrics among various models:
 
-| Features                  | Model                          | Accuracy |
-| ------------------------- | ------------------------------ | -------- |
-| Greedy Matching           | Logistic Regression            | 48.6%    |
-| Greedy Matching + Overlap | Logistic Regression            | 50.07%   |
-| Greedy Matching + Overlap | Random Forest (100 Estimators) | 45.47%   |
-| Greedy Matching + Overlap | NN                             | 50.17%   |
-| Greedy Matching + Overlap | SVM                            | 51.71%   |
+| Features                                          | Model                          | Accuracy |
+| ------------------------------------------------- | ------------------------------ | -------- |
+| Greedy Matching + Overlap                         | Logistic Regression            | 50.35%   |
+| Greedy Matching + Overlap                         | Random Forest (100 Estimators) | 43.79%   |
+| Greedy Matching + Overlap                         | NN                             | 50.05%   |
+| Greedy Matching + Overlap                         | SVM                            | 53.64%   |
+| Greedy Matching + Overlap (Sentence Transformers) | Logistic Regression            | 52.81%   |
+| Greedy Matching + Overlap (Sentence Transformers) | Random Forest (100 Estimators) | 50.90%   |
+| Greedy Matching + Overlap (Sentence Transformers) | NN                             | 54.01%   |
+| Greedy Matching + Overlap (Sentence Transformers) | SVM                            | 50%      |
 
 The Neural Model used for this task is described below:
 
