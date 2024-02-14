@@ -6,12 +6,31 @@
 
 .
 ├── NRC-VAD-Lexicon.txt
-├── phrases.csv
+├── output_phrases.csv
+├── output_words.csv
+├── paper-task
+│   ├── BERTScore: Paper Reading Task.md
+│   ├── bertscore.png
+│   └── rbert_pbert.png
 ├── PhraseSimilarity.ipynb
 ├── README.md
 ├── report.md
 ├── SimLex-999.txt
 └── WordSimilarity.ipynb
 
-0 directories, 7 files
+1 directory, 12 files
+```
+
+## Dependencies
+
+```
+sentence-transformers
+transformers
+datasets
+spacy
+tensorflow
+gensim
+scikit-learn
+pandas
+numpy
 ```
