@@ -17,10 +17,10 @@
 ├── report.md
 ├── SentenceSimilarity.ipynb
 ├── SimLex-999.txt
-├── test
 └── WordSimilarity.ipynb
 
-1 directory, 14 files
+
+1 directory, 13 files
 ```
 
 ## Dependencies
