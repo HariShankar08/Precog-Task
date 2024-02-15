@@ -60,8 +60,6 @@ The SVM and Neural Model were compared after incrementally adding new features o
 
 4. VAD Scores + Wu-Palmer Similarity + Word2Vec Similarity
 
-(TODO: Cite Wu-Palmer, Word2Vec)
-
 ### Observations -
 
 | Features                        | Model | MSE                | <= 1SD | <= 2 SD |
