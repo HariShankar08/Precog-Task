@@ -16,7 +16,7 @@
 
 * ### Phrase Similarity (Unconstrained)
   
-  **(Attempted):** Used BERT embeddings and similarity to predict whether the two phrases can be used interchangeably in a particular context. 
+  **(Attempted):** Used embeddings from `all-MiniLM-L6-v2` and similarity to predict whether the two phrases can be used interchangeably in a particular context. 
 
 * ### Sentence Similarity (Constrained)
   
@@ -24,9 +24,9 @@
 
 * ### Sentence Similarity (Unconstrained)
   
-  **(Pending.)**
+  **(Attempted):** Used embeddings from `all-MiniLM-L6-v2` for sentence embeddings and derivable propositions.
   
-  ### 
+  Due to unforeseen issues in Google Colab, etc., we use embeddings from `all-MiniLM-L6-v2` [12] for phrase and sentence similarity instead of `bert-base-uncased`.    
 
 ## Word Similarity Task:
 
@@ -42,11 +42,11 @@ Various ML models were tested for this case (Linear Regression, SVM, Random Fore
 
 We compared the performance of SVM and Neural Networks for the various embedding approaches followed. The following represents the general architecture of the Neural Networks trained;
 
-| Layer Type | Number of Nodes | Activation         |
-| ---------- | --------------- | ------------------ |
-| Dense      | 128             | ReLU (Input Layer) |
-| Dense      | 64              | ReLU               |
-| Dense      | 1               | None (Output)      |
+| Layer Type | Number of Nodes | Activation    |
+| ---------- | --------------- | ------------- |
+| Dense      | 128             | ReLU (Input)  |
+| Dense      | 64              | ReLU          |
+| Dense      | 1               | None (Output) |
 
 The Neural models were all trained on 100 epochs, with a batch size of 16. The Adam Optimizer was used during training.
 
@@ -105,6 +105,8 @@ We have used a metric based on the average similarity of the content words in th
 
 We observe the following performance metrics among various models:
 
+Due to computation constraints, we used a sample of 7000 data points from the training set; with a test size of 1000 examples and a validation set of size 2000.
+
 | Features                                          | Model                          | Accuracy |
 | ------------------------------------------------- | ------------------------------ | -------- |
 | Greedy Matching + Overlap                         | Logistic Regression            | 50.35%   |
@@ -156,12 +158,35 @@ We also use the system developed by Del Corro et al, ClausIE, to extract the var
 
 ### Observations -
 
+Due to computation constraints, we used a sample of 7000 data points from the training set; with a test size of 1000 examples and a validation set of size 2000.
+
+The performance is tabulated below:
+
 | Features                                               | Model                            | Accuracy |
 | ------------------------------------------------------ | -------------------------------- | -------- |
 | Sentence Similarity + Entity Match + Clause Similarity | Logistic Regression              | 54.88%   |
 | Sentence Similarity + Entity Match + Clause Similarity | Random Forest (n_estimators=100) | 52.88%   |
 | Sentence Similarity + Entity Match + Clause Similarity | SVM                              | 56.01%   |
 | Sentence Similarity + Entity Match + Clause Similarity | NN                               | 55.88%   |
+
+Due to computation constraints, while testing performance of contextual embeddings from `all-MiniLM-L6-v2` we instead train models on 1000 samples, with test size and validation size of 200 examples. 
+
+The performance is noted below:
+
+| Features                                                                       | Model                            | Accuracy                                                                             |
+| ------------------------------------------------------------------------------ | -------------------------------- | ------------------------------------------------------------------------------------ |
+| Sentence Similarity + Entity Match + Clause Similarity (Contextual Embeddings) | Logistic Regression              | 56.20%                                                                               |
+| Sentence Similarity + Entity Match + Clause Similarity (Contextual Embeddings) | Random Forest (n_estimators=100) | 62.09%                                                                               |
+| Sentence Similarity + Entity Match + Clause Similarity (Contextual Embeddings) | SVM                              | 58.16%                                                                               |
+| Sentence Similarity + Entity Match + Clause Similarity (Contextual Embeddings) | NN                               | 56.86%Sentence Similarity + Entity Match + Clause Similarity (Contextual Embeddings) |
+
+The Neural Model used for this task is described below:
+
+| Layer | Number of Nodes | Activation       |
+| ----- | --------------- | ---------------- |
+| Dense | 128             | ReLU (Input)     |
+| Dense | 64              | ReLU             |
+| Dense | 1               | Sigmoid (Output) |
 
 ### Analysis -
 
@@ -178,8 +203,6 @@ We also use the system developed by Del Corro et al, ClausIE, to extract the var
 
 
 # Bibliography
-
-
 
 1. Hill, Felix, Roi Reichart, and Anna Korhonen. "Simlex-999: Evaluating semantic models with (genuine) similarity estimation." *Computational Linguistics* 41.4 (2015): 665-695
 
@@ -202,3 +225,5 @@ We also use the system developed by Del Corro et al, ClausIE, to extract the var
 10. Lesk, Michael. "Automatic sense disambiguation using machine readable dictionaries: how to tell a pine cone from an ice cream cone." *Proceedings of the 5th annual international conference on Systems documentation*. 1986.
 
 11. Del Corro, Luciano, and Rainer Gemulla. "Clausie: clause-based open information extraction." *Proceedings of the 22nd international conference on World Wide Web*. 2013.
+
+12. Wang, Wenhui, et al. "Minilm: Deep self-attention distillation for task-agnostic compression of pre-trained transformers." *Advances in Neural Information Processing Systems* 33 (2020): 5776-5788.
