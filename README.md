@@ -3,10 +3,10 @@
 ## Directory Structure
 
 ```
-
 .
 ├── NRC-VAD-Lexicon.txt
 ├── output_phrases.csv
+├── output_sentences.csv
 ├── output_words.csv
 ├── paper-task
 │   ├── BERTScore: Paper Reading Task.md
@@ -15,10 +15,12 @@
 ├── PhraseSimilarity.ipynb
 ├── README.md
 ├── report.md
+├── SentenceSimilarity.ipynb
 ├── SimLex-999.txt
+├── test
 └── WordSimilarity.ipynb
 
-1 directory, 12 files
+1 directory, 14 files
 ```
 
 ## Dependencies
@@ -26,6 +28,7 @@
 ```
 sentence-transformers
 transformers
+claucy
 datasets
 spacy
 tensorflow
