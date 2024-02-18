@@ -9,18 +9,15 @@
 ├── output_sentences.csv
 ├── output_words.csv
 ├── paper-task
-│   ├── BERTScore: Paper Reading Task.md
-│   ├── bertscore.png
-│   └── rbert_pbert.png
+│   └── paper_report.pdf
 ├── PhraseSimilarity.ipynb
 ├── README.md
-├── report.md
+├── report.pdf
 ├── SentenceSimilarity.ipynb
 ├── SimLex-999.txt
 └── WordSimilarity.ipynb
 
-
-1 directory, 13 files
+1 directory, 11 files
 ```
 
 ## Dependencies
