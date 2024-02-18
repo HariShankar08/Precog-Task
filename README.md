@@ -30,6 +30,7 @@ datasets
 spacy
 tensorflow
 gensim
+nltk
 scikit-learn
 pandas
 numpy
